@@ -8,6 +8,10 @@
       
       
       
+        <link rel="prev" href="../screen/test/">
+      
+      
+        <link rel="next" href="../../tutorials/">
       
       
         
@@ -18,7 +22,7 @@
     
     
       
-        <title>testBp - ArduBoy</title>
+        <title>Vérification de l'état des boutons pousssoirs - ArduBoy</title>
       
     
     
@@ -80,6 +84,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#test-des-boutons" class="md-skip">
+          Aller au contenu
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -112,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              testBp
+              Vérification de l'état des boutons pousssoirs
             
           </span>
         </div>
@@ -264,10 +273,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../config/" class="md-tabs__link">
           
   
@@ -662,28 +673,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked="">
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -701,7 +715,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -819,6 +833,103 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vérification de l'état des boutons pousssoirs
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vérification de l'état des boutons pousssoirs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#comprendre-le-fonctionnement-pull-up-interne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprendre le fonctionnement (Pull-up interne)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-programme-de-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le programme de test
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1080,6 +1191,38 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#comprendre-le-fonctionnement-pull-up-interne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprendre le fonctionnement (Pull-up interne)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-programme-de-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le programme de test
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1096,9 +1239,107 @@
 
 
 
-  <h1>testBp</h1>
-
-
+<h1 id="test-des-boutons">Test des boutons<a class="headerlink" href="#test-des-boutons" title="Permanent link">¶</a></h1>
+<p>Avant de lancer un jeu, il est crucial de s'assurer que chaque bouton est correctement câblé et reconnu par notre ESP 32.
+Pour cela, nous utilisons une configuration spécifique appelée INPUT_PULLUP pour pouvoir éviter l'effet d'anti-rebond.</p>
+<h2 id="comprendre-le-fonctionnement-pull-up-interne">Comprendre le fonctionnement (Pull-up interne)<a class="headerlink" href="#comprendre-le-fonctionnement-pull-up-interne" title="Permanent link">¶</a></h2>
+<p>Nous n'utilisons pas de résistances internes pour la configuration pull-up interne car
+notre carte en possède déjà des résistances de PULLUP intégrées que nous pourrons 
+activer par code.</p>
+<p>Comment cela marche ?</p>
+<ul>
+<li>
+<p>Bouton relâché : La résistance interne "tire" le signal vers le 3.3V. L'ESP32 lit un état HAUT (1).</p>
+</li>
+<li>
+<p>Bouton appuyé : Le courant passe par le bouton vers la masse (GND). L'ESP32 lit un état BAS (0).</p>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../img/pullUp.png" data-desc-position="bottom"><img alt="Schéma pull UP" height="300" src="../../img/pullUp.png" width="300"></a>
+</figure>
+<p>C'est ce qu'on appelle de <strong>la logique inversée</strong> :</p>
+<p>Appuyé = 0 (false)
+Relâché = 1 (true)</p>
+<p>Pour simplifier le code de nos jeux, nous utilisons l'opérateur d'inversion ! (NON) :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">boutonAppuye</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">PIN</span><span class="p">);</span>
+</code></pre></div>
+<p>(Ainsi, si on lit 0, la variable devient "true")</p>
+<h2 id="le-programme-de-test">Le programme de test<a class="headerlink" href="#le-programme-de-test" title="Permanent link">¶</a></h2>
+<p>Ce programme affiche en temps réel quel bouton est appuyé sur l'écran de la console.
+Cela représente un outil de diagnostic idéal pour vérifier l'état des boutons poussoirs.</p>
+<p>Voici le code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;TFT_eSPI.h&gt;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cp">#define BTN_UP    25</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="cp">#define BTN_DOWN  26</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="cp">#define BTN_LEFT  27</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="cp">#define BTN_RIGHT 32</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="cp">#define BTN_A     33</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="cp">#define BTN_B     15</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">TFT_eSPI</span><span class="w"> </span><span class="n">screen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TFT_eSPI</span><span class="p">();</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_UP</span><span class="p">,</span><span class="w">    </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_DOWN</span><span class="p">,</span><span class="w">  </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_LEFT</span><span class="p">,</span><span class="w">  </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_RIGHT</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span><span class="w">  </span><span class="c1">// ← faute corrigée</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_A</span><span class="p">,</span><span class="w">     </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_B</span><span class="p">,</span><span class="w">     </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setRotation</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">fillScreen</span><span class="p">(</span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">TFT_CYAN</span><span class="p">,</span><span class="w"> </span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextSize</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">55</span><span class="p">);</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Appuie un bouton !"</span><span class="p">);</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="p">}</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">up</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BTN_UP</span><span class="p">);</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">down</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BTN_DOWN</span><span class="p">);</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">left</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BTN_LEFT</span><span class="p">);</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BTN_RIGHT</span><span class="p">);</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">a</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BTN_A</span><span class="p">);</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BTN_B</span><span class="p">);</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">  </span><span class="c1">// Effacer la zone d'affichage</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">  </span><span class="c1">// Repositionner le curseur ← AJOUTÉ</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextSize</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="mi">55</span><span class="p">);</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">  </span><span class="c1">// Couleur selon le bouton</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">up</span><span class="p">)</span><span class="w">    </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">TFT_GREEN</span><span class="p">,</span><span class="w">    </span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">down</span><span class="p">)</span><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">TFT_RED</span><span class="p">,</span><span class="w">      </span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">left</span><span class="p">)</span><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">TFT_CYAN</span><span class="p">,</span><span class="w">     </span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">TFT_YELLOW</span><span class="p">,</span><span class="w">   </span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w">     </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">TFT_ORANGE</span><span class="p">,</span><span class="w">   </span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w">     </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">TFT_WHITE</span><span class="p">,</span><span class="w">    </span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="w">  </span><span class="c1">// Afficher le nom du bouton</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="w">  </span><span class="k">if</span><span class="w">      </span><span class="p">(</span><span class="n">up</span><span class="p">)</span><span class="w">    </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"HAUT"</span><span class="p">);</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">down</span><span class="p">)</span><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"BAS"</span><span class="p">);</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">left</span><span class="p">)</span><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"GAUCHE"</span><span class="p">);</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"DROITE"</span><span class="p">);</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w">     </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"A"</span><span class="p">);</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w">     </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"B"</span><span class="p">);</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="w">    </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">TFT_DARKGREY</span><span class="p">,</span><span class="w"> </span><span class="n">TFT_BLACK</span><span class="p">);</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="w">    </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"..."</span><span class="p">);</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span><span class="w">  </span><span class="c1">// ← réduit à 50ms</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="p">}</span>
+</code></pre></div>
+<hr>
+<p>C'est tout pour ce tuto de test.</p>
 
 
 
@@ -1129,6 +1370,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page">
+        
+          
+          <a href="../screen/test/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Premier test de ma carte">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Premier test de ma carte
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../tutorials/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Vue d'ensemble">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Vue d'ensemble
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
