@@ -1,0 +1,2827 @@
+<!DOCTYPE html><html lang="fr" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the ArduBoy, an open-source handheld gaming console.">
+      
+      
+      
+      
+        <link rel="prev" href="../persistance/">
+      
+      
+        <link rel="next" href="../../source/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+    
+    
+      
+        <title>Algorithme des jeux - ArduBoy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/lightbox.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lalgorithme-des-jeux" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../.." title="ArduBoy" class="md-header__button md-logo" aria-label="ArduBoy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ArduBoy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Algorithme des jeux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Passer en mode sombre" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Passer en mode clair" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../introduction/" class="md-tabs__link">
+          
+  
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../hardware/list/" class="md-tabs__link">
+          
+  
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../config/" class="md-tabs__link">
+          
+  
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../tutorials/" class="md-tabs__link">
+          
+  
+  
+  Tutoriels
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../api/" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  À propos
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ArduBoy" class="md-nav__button md-logo" aria-label="ArduBoy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    ArduBoy
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduction
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C'est quoi et pourquoi Arduboy ?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hardware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Liste des composants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schéma de câblage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hardware/connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connexion des composants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configurer son environnement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../screen/presentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Présentation de l'écran
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../screen/functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comprendre les fonctions d'affichage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../screen/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Premier test de ma carte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../testBp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vérification de l'état des boutons pousssoirs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../testBuzz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test du buzzer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comprehension de l'architecture du code pour la console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine à états
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entr%C3%A9es/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestion des entrées
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timing non bloquant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendu optimisé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contrat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contrat de jeu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menu scrollable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persistance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Persistance des scores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithme des jeux
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithme des jeux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vue d'ensemble
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐍 Snake
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐍 Snake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deplacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Déplacement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manger-une-pomme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manger une pomme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-de-collision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Détection de collision
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏓 Pong
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏓 Pong">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physique-de-la-balle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physique de la balle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA simple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#breakout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧱 Breakout
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧱 Breakout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-aabb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test AABB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-de-la-grille" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parcours de la grille
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flappy-bird" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐦 Flappy Bird
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐦 Flappy Bird">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physique-de-loiseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physique de l'oiseau
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recyclage-des-tuyaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recyclage des tuyaux
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tetris" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟪 Tetris
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🟪 Tetris">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotation-2d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation 2D
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-de-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation de position
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suppression-de-lignes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suppression de lignes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#space-invaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        👾 Space Invaders
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="👾 Space Invaders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deplacement-en-formation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Déplacement en formation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tir-aleatoire-ennemi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tir aléatoire ennemi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dino-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🦕 Dino Run
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🦕 Dino Run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physique-de-saut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physique de saut
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spawn-procedural-des-obstacles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spawn procédural des obstacles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#labyrinthe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗺️ Labyrinthe
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗺️ Labyrinthe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigation-et-detection-de-sortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation et détection de sortie
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🃏 Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🃏 Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#melange-fisher-yates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mélange Fisher-Yates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logique-de-comparaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logique de comparaison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#morpion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Morpion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❌ Morpion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detection-du-vainqueur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Détection du vainqueur
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code source des jeux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutoriels
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutoriels
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vue d'ensemble
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vue d'ensemble
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    À propos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vue d'ensemble
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐍 Snake
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐍 Snake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deplacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Déplacement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manger-une-pomme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manger une pomme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection-de-collision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Détection de collision
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏓 Pong
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏓 Pong">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physique-de-la-balle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physique de la balle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA simple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#breakout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧱 Breakout
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧱 Breakout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-aabb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test AABB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-de-la-grille" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parcours de la grille
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flappy-bird" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐦 Flappy Bird
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐦 Flappy Bird">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physique-de-loiseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physique de l'oiseau
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recyclage-des-tuyaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recyclage des tuyaux
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tetris" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟪 Tetris
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🟪 Tetris">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotation-2d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation 2D
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-de-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation de position
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suppression-de-lignes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suppression de lignes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#space-invaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        👾 Space Invaders
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="👾 Space Invaders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deplacement-en-formation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Déplacement en formation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tir-aleatoire-ennemi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tir aléatoire ennemi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dino-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🦕 Dino Run
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🦕 Dino Run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physique-de-saut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physique de saut
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spawn-procedural-des-obstacles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spawn procédural des obstacles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#labyrinthe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗺️ Labyrinthe
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗺️ Labyrinthe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigation-et-detection-de-sortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation et détection de sortie
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🃏 Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🃏 Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#melange-fisher-yates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mélange Fisher-Yates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logique-de-comparaison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logique de comparaison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#morpion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Morpion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❌ Morpion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detection-du-vainqueur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Détection du vainqueur
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lalgorithme-des-jeux">L'algorithme des jeux<a class="headerlink" href="#lalgorithme-des-jeux" title="Permanent link">¶</a></h1>
+<hr>
+<h2 id="vue-densemble">Vue d'ensemble<a class="headerlink" href="#vue-densemble" title="Permanent link">¶</a></h2>
+<p>Chaque jeu respecte le contrat <code>initialiser / mettreÀJour / afficher</code>. Ce qui diffère, c'est l'algorithme propre à chaque mécanique. Cette section documente ces algorithmes, indépendamment de tout langage.</p>
+<table>
+<thead>
+<tr>
+<th>Jeu</th>
+<th>Concept clé</th>
+<th>Catégories</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#snake">🐍 Snake</a></td>
+<td>Décalage en cascade d'un tableau</td>
+<td>Grille · Tableau</td>
+</tr>
+<tr>
+<td><a href="#pong">🏓 Pong</a></td>
+<td>Physique balle, angle de frappe, IA</td>
+<td>Physique · IA</td>
+</tr>
+<tr>
+<td><a href="#breakout">🧱 Breakout</a></td>
+<td>Collision AABB, grille de briques</td>
+<td>Physique · Grille</td>
+</tr>
+<tr>
+<td><a href="#flappy-bird">🐦 Flappy Bird</a></td>
+<td>Gravité + impulsion, recyclage objets</td>
+<td>Physique · Procédural</td>
+</tr>
+<tr>
+<td><a href="#tetris">🟪 Tetris</a></td>
+<td>Rotation 2D, suppression de lignes</td>
+<td>Grille · Rotation</td>
+</tr>
+<tr>
+<td><a href="#space-invaders">👾 Space Invaders</a></td>
+<td>Formation groupée, accélération</td>
+<td>Formation · Aléatoire</td>
+</tr>
+<tr>
+<td><a href="#dino-run">🦕 Dino Run</a></td>
+<td>Saut avec gravité, spawn procédural</td>
+<td>Physique · Procédural</td>
+</tr>
+<tr>
+<td><a href="#️labyrinthe">🗺️ Labyrinthe</a></td>
+<td>Grille statique, score temporel</td>
+<td>Grille · Navigation</td>
+</tr>
+<tr>
+<td><a href="#memory">🃏 Memory</a></td>
+<td>Fisher-Yates shuffle, logique paires</td>
+<td>Aléatoire · Logique</td>
+</tr>
+<tr>
+<td><a href="#morpion">❌ Morpion</a></td>
+<td>8 combinaisons gagnantes</td>
+<td>Grille · Combinatoire</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="snake">🐍 Snake<a class="headerlink" href="#snake" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> le serpent est un tableau de segments. L'illusion du mouvement vient d'un décalage en cascade — chaque segment prend la place du précédent, et seule la tête se déplace vraiment.</p>
+<h3 id="deplacement">Déplacement<a class="headerlink" href="#deplacement" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>// 1. Sauvegarder la queue AVANT de bouger (pour l'effacement à l'écran)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ancienne_queue ← segments[longueur - 1]
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>// 2. Décaler du fond vers la tête — SENS CRUCIAL (voir note ci-dessous)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>pour i de longueur-1 à 1 :
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  segments[i] ← segments[i - 1]
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>// 3. Déplacer uniquement la tête
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>selon direction :
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  HAUT   → segments[0].y ← segments[0].y - 1
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  BAS    → segments[0].y ← segments[0].y + 1
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  GAUCHE → segments[0].x ← segments[0].x - 1
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  DROITE → segments[0].x ← segments[0].x + 1
+</code></pre></div>
+<blockquote>
+<p><strong>Pourquoi du fond vers la tête ?</strong> Si on parcourait de la tête vers le fond, <code>segments[1] = segments[0]</code> écraserait la valeur de <code>segments[1]</code> avant qu'elle soit copiée dans <code>segments[2]</code>. Tout le corps deviendrait identique à la tête en une frame.</p>
+</blockquote>
+<h3 id="manger-une-pomme">Manger une pomme<a class="headerlink" href="#manger-une-pomme" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>si tête.position == pomme.position :
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  longueur ← longueur + 1   // le tableau grandit d'un slot
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  score    ← score + 1
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  placer_pomme_aléatoire()
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  // Ne PAS effacer l'ancienne queue ce frame
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  // → le segment supplémentaire apparaît naturellement
+</code></pre></div>
+<h3 id="detection-de-collision">Détection de collision<a class="headerlink" href="#detection-de-collision" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>// Murs
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>si tête.x &lt; 0 ou tête.x ≥ largeur_grille ou
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   tête.y &lt; 0 ou tête.y ≥ hauteur_grille :
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  état ← TERMINÉ
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>// Corps — commence à l'index 1, jamais 0 (la tête ne se collision pas avec elle-même)
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>pour i de 1 à longueur - 1 :
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  si tête.position == segments[i].position :
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    état ← TERMINÉ
+</code></pre></div>
+<hr>
+<h2 id="pong">🏓 Pong<a class="headerlink" href="#pong" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> physique vectorielle simple. La balle a une vitesse (vx, vy). L'angle de rebond sur la raquette dépend de la distance entre le point d'impact et le centre.</p>
+<h3 id="physique-de-la-balle">Physique de la balle<a class="headerlink" href="#physique-de-la-balle" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>// Déplacement
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>balle.x ← balle.x + vitesse_x
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>balle.y ← balle.y + vitesse_y
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>// Rebond murs haut / bas
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>si balle.y ≤ 0 ou balle.y ≥ hauteur_écran :
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  vitesse_y ← -vitesse_y
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>// Collision avec la raquette : angle calculé selon le point d'impact
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>si balle touche la raquette :
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  vitesse_x ← -vitesse_x                              // inverser direction horizontale
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>  vitesse_y ← (balle.y - raquette.centre_y) × 0.15   // angle proportionnel à l'impact
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>  vitesse_x ← vitesse_x + 0.1                         // accélérer légèrement à chaque frappe
+</code></pre></div>
+<blockquote>
+<p><strong>L'angle de frappe :</strong> si la balle touche le centre de la raquette, l'écart est 0 → balle droite. Si elle touche le bord, l'écart est maximal → angle fort. Un seul calcul, un comportement riche et jouable.</p>
+</blockquote>
+<h3 id="ia-simple">IA simple<a class="headerlink" href="#ia-simple" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>déplacer_IA() :
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  si balle.y &gt; raquette_ia.centre_y :
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    raquette_ia.y ← raquette_ia.y + vitesse_ia   // suivre vers le bas
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  sinon si balle.y &lt; raquette_ia.centre_y :
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    raquette_ia.y ← raquette_ia.y - vitesse_ia   // suivre vers le haut
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  // vitesse_ia &lt; vitesse_joueur → l'IA est battable en frappant aux extrêmes
+</code></pre></div>
+<hr>
+<h2 id="breakout">🧱 Breakout<a class="headerlink" href="#breakout" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> physique de Pong + grille de briques. Détection de collision avec le test AABB (<em>Axis-Aligned Bounding Box</em>) : le test le plus courant pour deux rectangles non tournés.</p>
+<h3 id="test-aabb">Test AABB<a class="headerlink" href="#test-aabb" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>collision_rect(a, b) → booléen :
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  retourner a.gauche  &lt; b.droite    // A n'est pas entièrement à droite de B
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>         et a.droite  &gt; b.gauche    // A n'est pas entièrement à gauche de B
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>         et a.haut    &lt; b.bas       // A n'est pas entièrement sous B
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>         et a.bas     &gt; b.haut      // A n'est pas entièrement au-dessus de B
+</code></pre></div>
+<p>Si <strong>toutes les 4 conditions</strong> sont vraies simultanément, les deux rectangles se chevauchent.</p>
+<h3 id="parcours-de-la-grille">Parcours de la grille<a class="headerlink" href="#parcours-de-la-grille" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pour chaque brique dans grille :
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  si brique.vivante et collision_rect(balle, brique) :
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    brique.vivante    ← FAUX
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    score             ← score + 1
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    vitesse_y         ← -vitesse_y         // rebond
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    briques_restantes ← briques_restantes - 1
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    si briques_restantes == 0 : état ← TERMINÉ   // victoire !
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    arrêter                                       // une seule collision par frame
+</code></pre></div>
+<hr>
+<h2 id="flappy-bird">🐦 Flappy Bird<a class="headerlink" href="#flappy-bird" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> deux forces s'opposent — la gravité (constante, vers le bas) et l'impulsion de saut (ponctuelle, vers le haut). Les tuyaux sont recyclés plutôt que détruits et recréés.</p>
+<h3 id="physique-de-loiseau">Physique de l'oiseau<a class="headerlink" href="#physique-de-loiseau" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>// Chaque frame :
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>si bouton_saut.pressé :
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  vitesse_y ← -FORCE_SAUT       // impulsion vers le haut (valeur négative)
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>vitesse_y  ← vitesse_y + GRAVITE // gravité s'accumule chaque frame
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>position_y ← position_y + vitesse_y
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>si position_y ≤ 0 ou position_y ≥ hauteur_écran :
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>  état ← TERMINÉ
+</code></pre></div>
+<h3 id="recyclage-des-tuyaux">Recyclage des tuyaux<a class="headerlink" href="#recyclage-des-tuyaux" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pour chaque tuyau :
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  tuyau.x ← tuyau.x - vitesse_défilement
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  si tuyau.x &lt; -largeur_tuyau :           // sorti à gauche
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    tuyau.x     ← largeur_écran           // réapparaître à droite
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    tuyau.gap_y ← aléatoire(30, 100)      // nouvelle hauteur aléatoire
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    tuyau.passé ← FAUX
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>  // Compter le score quand le tuyau est franchi
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>  si non tuyau.passé et tuyau.x + largeur &lt; oiseau.x :
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    tuyau.passé ← VRAI
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    score ← score + 1
+</code></pre></div>
+<hr>
+<h2 id="tetris">🟪 Tetris<a class="headerlink" href="#tetris" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> le jeu le plus algorithmiquement riche. Il combine rotation 2D, validation de position, verrouillage, et suppression de lignes complètes avec cascade.</p>
+<h3 id="rotation-2d">Rotation 2D<a class="headerlink" href="#rotation-2d" title="Permanent link">¶</a></h3>
+<p>La formule pour tourner un point (x, y) de 90° dans le sens horaire dans une matrice de dimension MAX :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>(x, y)  →  (y, MAX - x)
+</code></pre></div>
+<p>Appliquée <code>n</code> fois, elle donne <code>n × 90°</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>appliquer_rotation(pièce, nb_rotations, résultat[]) :
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  pour chaque bloc {x, y} de la pièce :
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    répéter nb_rotations fois :
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>      tmp ← x
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>      x   ← y
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>      y   ← MAX - tmp      // MAX = taille de la matrice - 1 (souvent 3)
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    résultat ← {x, y}
+</code></pre></div>
+<h3 id="validation-de-position">Validation de position<a class="headerlink" href="#validation-de-position" title="Permanent link">¶</a></h3>
+<p>Avant tout déplacement ou rotation, on vérifie que la nouvelle position est légale.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>position_valide(px, py, forme[]) → booléen :
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>  pour chaque bloc {bx, by} de forme :
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    nx ← px + bx
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    ny ← py + by
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    si nx &lt; 0 ou nx ≥ colonnes ou ny ≥ rangées :
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>      retourner FAUX                        // hors limites
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    si ny ≥ 0 et grille[ny][nx] ≠ vide :
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>      retourner FAUX                        // case occupée
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>  retourner VRAI
+</code></pre></div>
+<h3 id="suppression-de-lignes">Suppression de lignes<a class="headerlink" href="#suppression-de-lignes" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>supprimer_lignes() :
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>  lignes_supprimées ← 0
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>  pour r de bas_grille à 0 :              // partir du bas — crucial
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    si ligne_pleine(r) :
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>      lignes_supprimées ← lignes_supprimées + 1
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>      pour row de r à 1 :                 // faire descendre toutes les lignes du dessus
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>        grille[row] ← grille[row - 1]
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>      grille[0] ← ligne_vide             // la ligne du haut devient vide
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>      r ← r + 1                          // re-vérifier la même rangée (nouvelle ligne descendue)
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>  // Score exponentiel : 1 ligne = 10, 2 = 40, 3 = 90, 4 = 160
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>  score ← score + lignes_supprimées² × 10
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>  // Accélérer la chute
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>  intervalle_chute ← max(100, 500 - score × 2)
+</code></pre></div>
+<blockquote>
+<p><strong>Pourquoi partir du bas ?</strong> Si on vérifiait de haut en bas et qu'on supprimait plusieurs lignes, les indices se décaleraient et on en manquerait. En partant du bas, chaque suppression ne perturbe que les lignes déjà traitées.</p>
+</blockquote>
+<hr>
+<h2 id="space-invaders">👾 Space Invaders<a class="headerlink" href="#space-invaders" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> toute la formation partage un seul timer et se déplace comme une entité unique. La difficulté s'auto-ajuste : moins il reste d'envahisseurs, plus ils se déplacent vite.</p>
+<h3 id="deplacement-en-formation">Déplacement en formation<a class="headerlink" href="#deplacement-en-formation" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>si (maintenant - dernier_mouvement) ≥ intervalle :
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  dernier_mouvement ← maintenant
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  // Vérifier le rebond AVANT de déplacer
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  rebond ← FAUX
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>  pour chaque envahisseur vivant :
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    si position_future dépasse un bord : rebond ← VRAI
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>  si rebond :
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    direction ← -direction                    // inverser
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    pour chaque envahisseur : y ← y + descente  // descendre d'un cran
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>  sinon :
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>    pour chaque envahisseur : x ← x + direction × pas
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>// Accélération dynamique après chaque destruction
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>intervalle ← max(intervalle_minimum, 400 - envahisseurs_restants × 15)
+</code></pre></div>
+<h3 id="tir-aleatoire-ennemi">Tir aléatoire ennemi<a class="headerlink" href="#tir-aleatoire-ennemi" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>tir_ennemi() :
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  si (maintenant - dernier_tir) &lt; délai_tir : retour
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>  tentatives ← 0
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>  tant que tentatives &lt; 20 :               // limiter les tentatives
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    r, c ← indices_aléatoires()
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    si envahisseurs[r][c].vivant :
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>      créer_missile(envahisseurs[r][c])
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>      arrêter
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    tentatives ← tentatives + 1
+</code></pre></div>
+<hr>
+<h2 id="dino-run">🦕 Dino Run<a class="headerlink" href="#dino-run" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> endless runner — le personnage est fixe, le monde défile. La physique de saut est identique à Flappy Bird mais avec une vérification d'atterrissage.</p>
+<h3 id="physique-de-saut">Physique de saut<a class="headerlink" href="#physique-de-saut" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>si bouton_saut.pressé et au_sol :
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  vitesse_y ← -FORCE_SAUT
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  au_sol    ← FAUX
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>vitesse_y  ← vitesse_y + GRAVITE
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>position_y ← position_y + vitesse_y
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>si position_y ≥ position_sol :       // atterrissage
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>  position_y ← position_sol
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>  vitesse_y  ← 0
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>  au_sol     ← VRAI
+</code></pre></div>
+<h3 id="spawn-procedural-des-obstacles">Spawn procédural des obstacles<a class="headerlink" href="#spawn-procedural-des-obstacles" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>// Chaque frame :
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>aucun_actif ← VRAI
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>pour chaque cactus :
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>  si cactus.actif : aucun_actif ← FAUX
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>// Spawner si vide, ou avec une faible probabilité après un délai
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>si aucun_actif ou (temps_depuis_spawn &gt; 2s et aléatoire(100) &lt; 5) :
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>  spawner_cactus_dans_slot_libre()
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>  horodatage_spawn ← maintenant
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>// Difficulté progressive
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>si score % 100 == 0 et vitesse &lt; vitesse_maximum :
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>  vitesse ← vitesse + 1
+</code></pre></div>
+<hr>
+<h2 id="labyrinthe">🗺️ Labyrinthe<a class="headerlink" href="#labyrinthe" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> grille 2D statique où <code>1</code> = mur et <code>0</code> = chemin. La sortie est volontairement hors des limites de la grille — la sortie est détectée comme un dépassement de bord.</p>
+<h3 id="navigation-et-detection-de-sortie">Navigation et détection de sortie<a class="headerlink" href="#navigation-et-detection-de-sortie" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>mettreÀJour(entrées) :
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  nouvelle_col   ← col
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  nouvelle_rangée ← rangée
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>  si entrées.haut.pressé    : nouvelle_rangée ← rangée - 1
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>  si entrées.bas.pressé     : nouvelle_rangée ← rangée + 1
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>  si entrées.gauche.pressé  : nouvelle_col   ← col - 1
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>  si entrées.droite.pressé  : nouvelle_col   ← col + 1
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>  // Sortie détectée comme dépassement de limites
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>  si nouvelle_col ≥ COLONNES ou nouvelle_rangée ≥ RANGÉES ou
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>     nouvelle_col &lt; 0 ou nouvelle_rangée &lt; 0 :
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>    score ← max(0, 999 - temps_écoulé_secondes)   // plus vite = meilleur score
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>    état  ← TERMINÉ
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>    retour
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>  // Déplacement uniquement si la case est libre
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>  si grille[nouvelle_rangée][nouvelle_col] == 0 :
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>    col     ← nouvelle_col
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>    rangée  ← nouvelle_rangée
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>    needsRedraw ← VRAI
+</code></pre></div>
+<hr>
+<h2 id="memory">🃏 Memory<a class="headerlink" href="#memory" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> mélange équitable garanti par l'algorithme de Fisher-Yates, puis logique de comparaison de paires avec délai d'affichage non-bloquant.</p>
+<h3 id="melange-fisher-yates">Mélange Fisher-Yates<a class="headerlink" href="#melange-fisher-yates" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>// Créer le tableau avec les 6 paires (chaque valeur en double)
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>tableau ← [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5]
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>// Mélanger : parcourir de la fin vers le début
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>pour i de longueur - 1 à 1 :
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>  j ← aléatoire(0, i)              // j entre 0 et i inclus
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>  échanger(tableau[i], tableau[j])  // permutation via variable temporaire
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>// Remplir la grille 2D depuis le tableau 1D
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>pour rangée, colonne dans grille :
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>  cartes[rangée][colonne] ← tableau[rangée × COLS + colonne]
+</code></pre></div>
+<blockquote>
+<p><strong>Propriété de Fisher-Yates :</strong> chaque permutation possible des 12 cartes est strictement équiprobable. Ce n'est pas le cas d'un mélange naïf (permuter des éléments au hasard à répétition), qui favorise certains arrangements.</p>
+</blockquote>
+<h3 id="logique-de-comparaison">Logique de comparaison<a class="headerlink" href="#logique-de-comparaison" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>si bouton_A.pressé et carte_non_retournée :
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>  si non première_carte_choisie :        // première sélection
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    première_carte        ← carte_actuelle
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    retournée[carte]      ← VRAI
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    première_carte_choisie ← VRAI
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>  sinon :                                // deuxième sélection
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>    retournée[carte_actuelle] ← VRAI
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>    horodatage_affichage      ← maintenant
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    bloquer_inputs            ← VRAI     // empêcher une 3e sélection pendant l'affichage
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>    si valeur(première_carte) == valeur(carte_actuelle) :  // paire trouvée !
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>      trouvée[première_carte]  ← VRAI
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>      trouvée[carte_actuelle]  ← VRAI
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>      paires_trouvées          ← paires_trouvées + 1
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>      si paires_trouvées == total_paires : état ← TERMINÉ
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>// Timer non-bloquant : après 1 seconde d'affichage
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>si bloquer_inputs et (maintenant - horodatage_affichage) &gt; 1000ms :
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>  si non paire_trouvée :
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>    retournée[première_carte]  ← FAUX   // cacher les deux cartes
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>    retournée[carte_actuelle]  ← FAUX
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>  première_carte_choisie ← FAUX
+<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>  bloquer_inputs         ← FAUX
+<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>  needsRedraw            ← VRAI
+</code></pre></div>
+<hr>
+<h2 id="morpion">❌ Morpion<a class="headerlink" href="#morpion" title="Permanent link">¶</a></h2>
+<p><strong>Principe :</strong> grille 3×3, deux joueurs alternent. Après chaque coup, on vérifie les 8 alignements possibles. Si la grille est pleine sans gagnant : match nul.</p>
+<h3 id="detection-du-vainqueur">Détection du vainqueur<a class="headerlink" href="#detection-du-vainqueur" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>vérifier_victoire() → joueur_gagnant ou RIEN :
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>  // 3 lignes horizontales
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>  pour rangée de 0 à 2 :
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>    si grille[rangée][0] ≠ VIDE
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>       et grille[rangée][0] == grille[rangée][1]
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>       et grille[rangée][1] == grille[rangée][2] :
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>      retourner grille[rangée][0]
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>  // 3 colonnes verticales
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>  pour col de 0 à 2 :
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>    si grille[0][col] ≠ VIDE
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>       et grille[0][col] == grille[1][col]
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>       et grille[1][col] == grille[2][col] :
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>      retourner grille[0][col]
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>  // Diagonale principale ↘
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>  si grille[0][0] ≠ VIDE
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>     et grille[0][0] == grille[1][1]
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>     et grille[1][1] == grille[2][2] :
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>    retourner grille[0][0]
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>
+<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>  // Diagonale secondaire ↙
+<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>  si grille[0][2] ≠ VIDE
+<a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>     et grille[0][2] == grille[1][1]
+<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>     et grille[1][1] == grille[2][0] :
+<a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>    retourner grille[0][2]
+<a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>
+<a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>  // Match nul : toutes les cases remplies, aucun gagnant
+<a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>  si aucune_case_vide() : retourner MATCH_NUL
+<a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>
+<a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a>  retourner RIEN   // partie encore en cours
+</code></pre></div>
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page">
+        
+          
+          <a href="../persistance/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Persistance des scores">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Persistance des scores
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../source/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Code source des jeux">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Code source des jeux
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../js/lightbox.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

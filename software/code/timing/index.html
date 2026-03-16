@@ -8,24 +8,28 @@
       
       
       
+        <link rel="prev" href="../entr%C3%A9es/">
+      
+      
+        <link rel="next" href="../rendu/">
       
       
         
       
       
-      <link rel="icon" href="../../img/favicon.ico">
+      <link rel="icon" href="../../../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
-        <title>Mon premier code - ArduBoy</title>
+        <title>Timing non bloquant - ArduBoy</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -44,15 +48,15 @@
       
     
     
-      <link rel="stylesheet" href="../../css/lightbox.css">
+      <link rel="stylesheet" href="../../../css/lightbox.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
@@ -81,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mon-premier-code" class="md-skip">
+        <a href="#le-timing-non-bloquant" class="md-skip">
           Aller au contenu
         </a>
       
@@ -97,7 +101,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="En-tête">
-    <a href="../.." title="ArduBoy" class="md-header__button md-logo" aria-label="ArduBoy" data-md-component="logo">
+    <a href="../../.." title="ArduBoy" class="md-header__button md-logo" aria-label="ArduBoy" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
@@ -117,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mon premier code
+              Timing non bloquant
             
           </span>
         </div>
@@ -212,7 +216,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -233,7 +237,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../introduction/" class="md-tabs__link">
+        <a href="../../../introduction/" class="md-tabs__link">
           
   
   
@@ -253,7 +257,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../hardware/list/" class="md-tabs__link">
+        <a href="../../../hardware/list/" class="md-tabs__link">
           
   
   
@@ -269,11 +273,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../config/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../config/" class="md-tabs__link">
           
   
   
@@ -293,7 +299,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../tutorials/" class="md-tabs__link">
+        <a href="../../../tutorials/" class="md-tabs__link">
           
   
   
@@ -313,7 +319,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../api/" class="md-tabs__link">
+        <a href="../../../api/" class="md-tabs__link">
           
   
   
@@ -331,7 +337,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../faq/" class="md-tabs__link">
+      <a href="../../../faq/" class="md-tabs__link">
         
   
   
@@ -350,7 +356,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../about/" class="md-tabs__link">
+      <a href="../../../about/" class="md-tabs__link">
         
   
   
@@ -391,7 +397,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ArduBoy" class="md-nav__button md-logo" aria-label="ArduBoy" data-md-component="logo">
+    <a href="../../.." title="ArduBoy" class="md-nav__button md-logo" aria-label="ArduBoy" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
@@ -409,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -490,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../introduction/" class="md-nav__link">
+      <a href="../../../introduction/" class="md-nav__link">
         
   
   
@@ -579,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hardware/list/" class="md-nav__link">
+      <a href="../../../hardware/list/" class="md-nav__link">
         
   
   
@@ -607,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hardware/diagram/" class="md-nav__link">
+      <a href="../../../hardware/diagram/" class="md-nav__link">
         
   
   
@@ -635,7 +641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hardware/connection/" class="md-nav__link">
+      <a href="../../../hardware/connection/" class="md-nav__link">
         
   
   
@@ -667,28 +673,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked="">
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -706,7 +715,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -724,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/" class="md-nav__link">
+      <a href="../../config/" class="md-nav__link">
         
   
   
@@ -752,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../screen/presentation/" class="md-nav__link">
+      <a href="../../screen/presentation/" class="md-nav__link">
         
   
   
@@ -780,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../screen/functions/" class="md-nav__link">
+      <a href="../../screen/functions/" class="md-nav__link">
         
   
   
@@ -808,7 +817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../screen/test/" class="md-nav__link">
+      <a href="../../screen/test/" class="md-nav__link">
         
   
   
@@ -836,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../testBp/" class="md-nav__link">
+      <a href="../../testBp/" class="md-nav__link">
         
   
   
@@ -864,7 +873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../testBuzz/" class="md-nav__link">
+      <a href="../../testBuzz/" class="md-nav__link">
         
   
   
@@ -892,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         
   
   
@@ -920,7 +929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code/machine/" class="md-nav__link">
+      <a href="../machine/" class="md-nav__link">
         
   
   
@@ -948,7 +957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code/entr%C3%A9es/" class="md-nav__link">
+      <a href="../entr%C3%A9es/" class="md-nav__link">
         
   
   
@@ -973,10 +982,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../code/timing/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timing non bloquant
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -992,6 +1028,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#le-probleme-a-resoudre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le problème à résoudre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-solution-mesurer-plutot-quattendre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La solution : mesurer plutôt qu'attendre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithme-timer-non-bloquant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithme — Timer non-bloquant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chaque-composant-a-son-propre-timer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chaque composant a son propre timer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-timer-et-les-entrees-linteraction-correcte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le timer et les entrées : l'interaction correcte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variante-le-timer-avec-debounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variante : le timer avec debounce
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-retenir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        À retenir
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1004,7 +1137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code/rendu/" class="md-nav__link">
+      <a href="../rendu/" class="md-nav__link">
         
   
   
@@ -1032,7 +1165,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code/contrat/" class="md-nav__link">
+      <a href="../contrat/" class="md-nav__link">
         
   
   
@@ -1060,7 +1193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code/menu/" class="md-nav__link">
+      <a href="../menu/" class="md-nav__link">
         
   
   
@@ -1088,7 +1221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code/persistance/" class="md-nav__link">
+      <a href="../persistance/" class="md-nav__link">
         
   
   
@@ -1116,7 +1249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code/algo/" class="md-nav__link">
+      <a href="../algo/" class="md-nav__link">
         
   
   
@@ -1144,7 +1277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../source/" class="md-nav__link">
+      <a href="../../source/" class="md-nav__link">
         
   
   
@@ -1233,7 +1366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/" class="md-nav__link">
+      <a href="../../../tutorials/" class="md-nav__link">
         
   
   
@@ -1322,7 +1455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/" class="md-nav__link">
+      <a href="../../../api/" class="md-nav__link">
         
   
   
@@ -1357,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../faq/" class="md-nav__link">
+      <a href="../../../faq/" class="md-nav__link">
         
   
   
@@ -1384,7 +1517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../../about/" class="md-nav__link">
         
   
   
@@ -1424,6 +1557,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#le-probleme-a-resoudre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le problème à résoudre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-solution-mesurer-plutot-quattendre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La solution : mesurer plutôt qu'attendre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithme-timer-non-bloquant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithme — Timer non-bloquant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chaque-composant-a-son-propre-timer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chaque composant a son propre timer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-timer-et-les-entrees-linteraction-correcte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le timer et les entrées : l'interaction correcte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variante-le-timer-avec-debounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variante : le timer avec debounce
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-retenir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        À retenir
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1439,48 +1657,95 @@
 
 
 
-<h1 id="mon-premier-code">Mon premier code<a class="headerlink" href="#mon-premier-code" title="Permanent link">¶</a></h1>
-<p>Ceci est un code pour tester si votre ESP 32 est prêt à être programmé.</p>
+<h1 id="le-timing-non-bloquant">Le timing non bloquant<a class="headerlink" href="#le-timing-non-bloquant" title="Permanent link">¶</a></h1>
 <hr>
-<p>Ouvrez un projet et nommez le et copiez-collez ce code</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// ÉTAPE 1 : inclure la bibliothèque de l'écran</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;TFT_eSPI.h&gt;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// ÉTAPE 2 : créer l'objet écran</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">TFT_eSPI</span><span class="w"> </span><span class="n">screen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TFT_eSPI</span><span class="p">();</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="c1">// ÉTAPE 3 : démarrer le moniteur série (pour déboguer)</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="c1">// ÉTAPE 4 : initialiser l'écran</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="c1">// ÉTAPE 5 : mettre l'écran en mode paysage</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setRotation</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="c1">// ÉTAPE 6 : remplir l'écran en noir</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">fillScreen</span><span class="p">(</span><span class="n">TFT_BLACK</span><span class="p">);</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="c1">// ÉTAPE 7 : choisir la couleur du texte</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">TFT_WHITE</span><span class="p">,</span><span class="w"> </span><span class="n">TFT_BLACK</span><span class="p">);</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">  </span><span class="c1">// ÉTAPE 8 : choisir la taille du texte</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setTextSize</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="c1">// ÉTAPE 9 : positionner le curseur</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">55</span><span class="p">);</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="c1">// ÉTAPE 10 : afficher "Hello World !"</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">);</span><span class="w">  </span><span class="c1">//</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="p">}</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="c1">// Rien pour l'instant</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="p">}</span>
+<h2 id="le-probleme-a-resoudre">Le problème à résoudre<a class="headerlink" href="#le-probleme-a-resoudre" title="Permanent link">¶</a></h2>
+<p>La manière naïve d'attendre dans un programme embarqué est d'appeler une fonction de pause :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>faire_action()
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>attendre(200ms)     ← le CPU s'arrête ici pendant 200ms
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>faire_suite()
+</code></pre></div>
+<p>Pendant ces 200ms, <strong>tout s'arrête</strong> : les boutons ne sont plus lus, l'écran ne se met plus à jour, le son est coupé. Sur un système avec un seul jeu simple, ça passe. Sur une console avec 10 jeux et des composants qui doivent tous fonctionner en même temps, c'est rédhibitoire.</p>
+<p>Mais il y avait une <strong>issue</strong> pour éviter cela.</p>
+<hr>
+<h2 id="la-solution-mesurer-plutot-quattendre">La solution : mesurer plutôt qu'attendre<a class="headerlink" href="#la-solution-mesurer-plutot-quattendre" title="Permanent link">¶</a></h2>
+<p>Au lieu de bloquer le CPU, on <strong>mémorise l'heure</strong> à laquelle la dernière action a eu lieu, et on vérifie à chaque cycle si le délai est écoulé.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>❌ Approche bloquante          ✅ Approche non-bloquante
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>───────────────────────        ──────────────────────────────
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1. Faire l'action              1. Mémoriser l'horodatage
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>2. attendre(200ms)             2. Continuer la boucle normalement
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>   └─ CPU bloqué               3. Cycle suivant : vérifier si délai écoulé
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>   └─ boutons sourds           4. Si oui → faire l'action, mémoriser l'heure
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>   └─ écran figé               5. Si non → ne rien faire, revenir au cycle
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>3. Reprendre                   └─ boutons réactifs · écran fluide · audio actif
+</code></pre></div>
+<blockquote>
+<p><strong>Une belle analogie :</strong> un serveur au restaurant ne reste pas planté devant le four à regarder cuire chaque plat. Il regarde l'horloge, sert d'autres tables, revient vérifier. Il <em>mesure le temps</em> au lieu d'<em>attendre</em>.</p>
+</blockquote>
+<hr>
+<h2 id="algorithme-timer-non-bloquant">Algorithme — Timer non-bloquant<a class="headerlink" href="#algorithme-timer-non-bloquant" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a> Variable persistante (conservée entre les cycles)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>dernière_action ← 0
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>mettreÀJour() :
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  maintenant ← temps_actuel_ms()
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  si (maintenant - dernière_action) &lt; intervalle :
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    retour                      ← trop tôt, on sort immédiatement
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  dernière_action ← maintenant  ← mémoriser pour le prochain déclenchement
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  logique_du_jeu()              ← maintenant on exécute
+</code></pre></div>
+<p><strong>Ce qui se passe réellement :</strong> la boucle principale continue à tourner 60 fois par seconde. À chaque passage dans <code>mettreÀJour()</code>, on vérifie si l'intervalle est écoulé. Si non, on sort en une microseconde. Le CPU est libre pour tout le reste.</p>
+<hr>
+<h2 id="chaque-composant-a-son-propre-timer">Chaque composant a son propre timer<a class="headerlink" href="#chaque-composant-a-son-propre-timer" title="Permanent link">¶</a></h2>
+<p>C'est le point le plus important : plusieurs composants peuvent avoir des rythmes totalement différents <strong>dans la même boucle</strong>, sans s'interférer.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Boucle principale (tourne en permanence)
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  │
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  ├── lireEntrées()              ← chaque cycle (~1ms)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  │
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  ├── serpent.mettreÀJour()
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  │     └── si (maintenant - lastMove) &lt; 150ms → retour
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  │         sinon → déplacer le serpent          [150ms]
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  │
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  ├── envahisseurs.mettreÀJour()
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>  │     └── si (maintenant - lastMove) &lt; 400ms → retour
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  │         sinon → déplacer la formation        [400ms, décroissant]
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>  │
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>  └── balle_pong.mettreÀJour()
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        └── si (maintenant - lastUpdate) &lt; 16ms → retour
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            sinon → physique de la balle         [16ms ≈ 60 fps]
+</code></pre></div>
+<p>Chacun évolue à son propre rythme. Aucun ne bloque les autres.</p>
+<hr>
+<h2 id="le-timer-et-les-entrees-linteraction-correcte">Le timer et les entrées : l'interaction correcte<a class="headerlink" href="#le-timer-et-les-entrees-linteraction-correcte" title="Permanent link">¶</a></h2>
+<p>Le timer non-bloquant ne s'applique qu'à la <strong>logique de jeu</strong> (physique, déplacement automatique). Les entrées, elles, sont lues à chaque cycle sans condition, sinon on risque de rater un appui.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>boucle principale :
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  lireEntrées()                    ← TOUJOURS, sans condition
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  si (maintenant - lastUpdate) &lt; intervalle : retour   ← le timer
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  lastUpdate ← maintenant
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  traiter_entrees_et_logique()     ← seulement quand le timer sonne
 </code></pre></div>
 <hr>
-<p>Vous verrez alors l'écran de l'ESP 32 TTGO afficher le message "Hello World!".</p>
+<h2 id="variante-le-timer-avec-debounce">Variante : le timer avec debounce<a class="headerlink" href="#variante-le-timer-avec-debounce" title="Permanent link">¶</a></h2>
+<p>Pour la navigation dans le menu, on veut à la fois la réactivité du front montant ET un délai minimum entre deux déplacements (pour éviter de défiler trop vite si le bouton est maintenu).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>si bouton_bas.pressé ET (maintenant - dernière_navigation &gt; 200ms) :
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  curseur ← curseur + 1
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  dernière_navigation ← maintenant
+</code></pre></div>
+<p>Ce n'est pas du timing de jeu — c'est du <strong>debounce de navigation</strong>. Le délai de 200ms est intentionnel et perceptible par l'utilisateur.</p>
+<hr>
+<h2 id="a-retenir">À retenir<a class="headerlink" href="#a-retenir" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>Ne jamais utiliser de pause bloquante</strong> dans la boucle principale d'un jeu.</li>
+<li>Chaque composant qui a un rythme propre possède sa variable <code>dernière_action</code>.</li>
+<li>Les entrées sont lues <strong>sans condition</strong> à chaque cycle.</li>
+<li>La formule <code>(maintenant - dernière_action) &gt;= intervalle</code> est universelle : elle fonctionne dans n'importe quel langage.</li>
+</ul>
+<hr>
 
 
 
@@ -1512,6 +1777,44 @@
         <footer class="md-footer">
   
     
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page">
+        
+          
+          <a href="../entr%C3%A9es/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Gestion des entrées">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Gestion des entrées
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../rendu/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Rendu optimisé">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Rendu optimisé
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1538,12 +1841,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../js/lightbox.js"></script>
+        <script src="../../../js/lightbox.js"></script>
       
     
   
