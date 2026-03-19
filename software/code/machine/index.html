@@ -1701,8 +1701,8 @@
 <hr>
 <h2 id="le-probleme-a-resoudre">Le problème à résoudre<a class="headerlink" href="#le-probleme-a-resoudre" title="Permanent link">¶</a></h2>
 <p>Sans structure, le code de la boucle principale ressemblerait vite à ceci :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>si on est dans le menu et le jeu n'est pas lancé et l'écran de résultats
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>n'est pas affiché et le bouton A est appuyé et ce n'est pas le premier
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>si on est dans le menu, que le jeu n'est pas lancé, que l'écran de résultats
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>n'est pas affiché, que le bouton A est appuyé et ce n'est pas le premier
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>démarrage alors ...
 </code></pre></div>
 <p>Ces conditions imbriquées deviennent <strong>ingérables</strong>. Il suffit d'un état oublié pour que le jeu se mette à jour alors qu'on est sur l'écran Game Over, ou que le menu s'affiche par-dessus une partie en cours.</p>

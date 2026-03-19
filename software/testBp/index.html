@@ -1622,7 +1622,7 @@ Cela représente un outil de diagnostic idéal pour vérifier l'état des bouton
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_UP</span><span class="p">,</span><span class="w">    </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_DOWN</span><span class="p">,</span><span class="w">  </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_LEFT</span><span class="p">,</span><span class="w">  </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_RIGHT</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span><span class="w">  </span><span class="c1">// ← faute corrigée</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_RIGHT</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span><span class="w"> </span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_A</span><span class="p">,</span><span class="w">     </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">BTN_B</span><span class="p">,</span><span class="w">     </span><span class="n">INPUT_PULLUP</span><span class="p">);</span>
 <a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
@@ -1671,13 +1671,13 @@ Cela représente un outil de diagnostic idéal pour vérifier l'état des bouton
 <a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="w">    </span><span class="n">screen</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"..."</span><span class="p">);</span>
 <a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
-<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span><span class="w">  </span><span class="c1">// ← réduit à 50ms</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span><span class="w">  </span><span class="c1">// réduit à 50ms</span>
 <a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="p">}</span>
 </code></pre></div>
 Il permettra lors de l'appui sur un bouton pousssoir de vérifier s'il est vraiment connecté ou pas.<p></p>
 <div class="admonition tip">
 <p class="admonition-title">Diagnostic de maintenance</p>
-<p>Si un bouton ne réagit pas lors du test, vérifiez la masse (GND) : une des pattes de chaque bouton doit être reliée au rail commun GND. Si le probmème ne se retrouve pas là, assurez-vous que le fil est planté dans le bon port.</p>
+<p>Si un bouton ne réagit pas lors du test, vérifiez la masse (GND) : une des pattes de chaque bouton doit être reliée au rail commun GND. Si le problème ne se retrouve pas là, assurez-vous que le fil est planté dans le bon port.</p>
 </div>
 <p>Pour en savoir plus sur le bouton poussoir, consultez le lien <a href="https://arduinofactory.fr/bouton-poussoir/">Pour en savoir plus sur le bouton poussoir</a>.</p>
 <hr>

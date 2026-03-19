@@ -1723,7 +1723,6 @@
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">¶</a></h2>
 <p>Cette section décrit l'environnement logiciel nécessaire pour programmer la console ArduBoy.</p>
 <p>Le développement est réalisé à l'aide de l'IDE Arduino et de plusieurs bibliothèques permettant de gérer l'affichage graphique, les boutons et la logique des jeux.</p>
-<p>Avant de pouvoir compiler et téléverser le programme dans la carte ESP32 TTGO T-Display, il est nécessaire de configurer correctement l'environnement de développement.</p>
 <h2 id="avant-toute-chose">Avant toute chose ...<a class="headerlink" href="#avant-toute-chose" title="Permanent link">¶</a></h2>
 <p>Avant de programmer la carte <strong>ESP32 TTGO T-Display</strong>, il est nécessaire de préparer correctement <strong>l’environnement de développement</strong>.</p>
 <h3 id="telecharger-lide-arduino">Télécharger L'IDE Arduino<a class="headerlink" href="#telecharger-lide-arduino" title="Permanent link">¶</a></h3>
@@ -1741,7 +1740,7 @@ gestionnaires de cartes et collez ce lien:</p>
   <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../img/config1.png" data-desc-position="bottom"><img alt="Additionnal boards manager URLs" src="../../img/config1.png"></a>
 </figure>
 <h3 id="installer-le-gestionnaire-de-cartes">Installer le gestionnaire de cartes<a class="headerlink" href="#installer-le-gestionnaire-de-cartes" title="Permanent link">¶</a></h3>
-<p>Après avoir ajouté le lien, on valide et on va dans <strong>Outils</strong>, puis on choisit <strong>Type de carte</strong> et on choisit le <strong>Gestionnaire de cartes</strong> puis on cherche <strong>ESP 32</strong> puis on installe <strong>la dernière version disponible (actuellement 3.3.7)</strong>.</p>
+<p>Après avoir ajouté le lien, valider et dans <strong>Outils</strong>, choisissez le type de carte. Puis dans le gestionnaire de cartes, cherchez ensuite <strong>ESP 32</strong> et installer la dernière version disponible <strong>(actuellement 3.3.7)</strong>.</p>
 <div class="admonition tip">
 <p class="admonition-title">RECOMMANDATION</p>
 <p>Je vous recommande à cette étape de vous munir d'une connexion internet de bon débit sinon
@@ -1751,7 +1750,8 @@ vous pourrez ne pas évoluer et être bloqué à cette étape.</p>
   <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../img/config2.png" data-desc-position="bottom"><img alt="Boards Manager" src="../../img/config2.png"></a>
 </figure>
 <h3 id="installer-la-bibliotheque-tft_espi">Installer la bibliothèque TFT_eSPI<a class="headerlink" href="#installer-la-bibliotheque-tft_espi" title="Permanent link">¶</a></h3>
-<p>Après avoir installé le gestionnaire de carte de l'ESP 32, allez dans Outils puis sélectionner Gérer les bibliothèques et chercher TFT_eSPi dans la barre de recherche et installer la derniére version disponible (actuellement la version 2.5.43).</p>
+<p>Après avoir installé le gestionnaire de carte de l'ESP 32, allez dans Outils puis sélectionner <strong>Gérer les bibliothèques</strong>. 
+Ensuite chercher <strong>TFT_eSPi</strong> dans la barre de recherche et installer la derniére version disponible <code>(actuellement la version 2.5.43)</code>.</p>
 <figure>
   <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../img/config3.png" data-desc-position="bottom"><img alt="Library TFT_eSPI" src="../../img/config3.png"></a>
 </figure>
@@ -1764,8 +1764,9 @@ vous pourrez ne pas évoluer et être bloqué à cette étape.</p>
 <p>Si vous aviez changé votre répertoire par défaut, vous pouvez le consulter dans Préférences, dans l'emplacement du carnet de croquis.</p>
 <ul>
 <li>
-<p>Allez dans le dossier <strong>Libraries</strong> et chercher <strong>TFT_eSPI</strong> et ouvrir le fichier nommé
-<strong>User_Setup_Select</strong> avec n'importe quel éditeur de code. Pour débutant, ouvrez-le avec <strong>Bloc-Notes</strong>.</p>
+<p>Allez dans le dossier <strong>Libraries</strong> et chercher <strong>TFT_eSPI</strong> puis ouvrir le fichier nommé 
+<strong>User_Setup_Select</strong> avec l'éditeur de code de votre. Pour débutant, je vous conseille 
+de l'ouvrir avec <strong>Bloc-Notes</strong>.</p>
 </li>
 <li>
 <p>Commentez la ligne (généralement la ligne 30):</p>
