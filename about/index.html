@@ -1745,7 +1745,10 @@
 </style>
 
 <div class="feedback-form">
-    <form action="https://formspree.io/f/maqlyygq" method="POST">
+    <div id="confirmation-message" style="display: none; color: var(--md-primary-fg-color); font-weight: bold; margin-bottom: 15px;">
+        Merci pour votre feedback ! Votre message a été envoyé avec succès.
+    </div>
+    <form id="feedback-form" action="https://formspree.io/f/maqlyygq" method="POST">
         <label for="email">Email (requis)</label>
         <input type="email" id="email" name="email" required="">
 
@@ -1762,6 +1765,42 @@
         <button type="submit">Envoyer</button>
     </form>
 </div>
+
+<script>
+document.getElementById('feedback-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Empêche la redirection
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const confirmationMessage = document.getElementById('confirmation-message');
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Afficher le message de confirmation
+            confirmationMessage.style.display = 'block';
+            // Vider les champs
+            form.reset();
+            // Masquer le message après 5 secondes
+            setTimeout(() => {
+                confirmationMessage.style.display = 'none';
+            }, 5000);
+        } else {
+            alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        alert('Erreur lors de l\'envoi. Vérifiez votre connexion.');
+    });
+});
+</script>
 
 
 
@@ -1818,15 +1857,16 @@
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
+      <span style="font-family: 'Century Gothic', sans-serif;">
+    Copyright 2026 Giscard AKINERINLA
+    <br>
+    <span style="font-size: small;">
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+        </a>
+    </span>
+</span>
       
     </div>
   </div>
