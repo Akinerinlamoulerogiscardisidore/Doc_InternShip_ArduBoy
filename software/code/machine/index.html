@@ -1729,10 +1729,33 @@
 <hr>
 <h2 id="le-probleme-a-resoudre">Le problème à résoudre<a class="headerlink" href="#le-probleme-a-resoudre" title="Permanent link">¶</a></h2>
 <p>Sans structure, le code de la boucle principale ressemblerait vite à ceci :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>si on est dans le menu, que le jeu n'est pas lancé, que l'écran de résultats
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>n'est pas affiché, que le bouton A est appuyé et ce n'est pas le premier
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>démarrage alors ...
-</code></pre></div>
+<pre class="mermaid"><code>flowchart TD
+    START([" Bouton A appuyé"])
+
+    Q1{"Dans le menu ?"}
+    Q2{"Jeu lancé ?"}
+    Q3{"Écran résultats\naffiché ?"}
+    Q4{"Premier\ndémarrage ?"}
+    ACTION["✅ Lancer le jeu"]
+    NOTHING(["❌ Ne rien faire"])
+
+    START --&gt; Q1
+    Q1 -- Non --&gt; NOTHING
+    Q1 -- Oui --&gt; Q2
+    Q2 -- Oui --&gt; NOTHING
+    Q2 -- Non --&gt; Q3
+    Q3 -- Oui --&gt; NOTHING
+    Q3 -- Non --&gt; Q4
+    Q4 -- Oui --&gt; NOTHING
+    Q4 -- Non --&gt; ACTION
+
+    style START fill:#1a2a3a,stroke:#00d4ff,stroke-width:2px,color:#d8d8f0
+    style ACTION fill:#1a3a1a,stroke:#00ff88,stroke-width:2px,color:#d8d8f0
+    style NOTHING fill:#3a1a1a,stroke:#ff3c5f,stroke-width:2px,color:#d8d8f0
+    style Q1 fill:#2a1a3a,stroke:#b97cff,stroke-width:1.5px,color:#d8d8f0
+    style Q2 fill:#2a1a3a,stroke:#b97cff,stroke-width:1.5px,color:#d8d8f0
+    style Q3 fill:#2a1a3a,stroke:#b97cff,stroke-width:1.5px,color:#d8d8f0
+    style Q4 fill:#2a1a3a,stroke:#b97cff,stroke-width:1.5px,color:#d8d8f0</code></pre>
 <p>Ces conditions imbriquées deviennent <strong>ingérables</strong>. Il suffit d'un état oublié pour que le jeu se mette à jour alors qu'on est sur l'écran Game Over, ou que le menu s'affiche par-dessus une partie en cours.</p>
 <p><strong>A quoi nous avons pensé pour pallier à cela ?</strong></p>
 <p>La <strong>machine à états finis (FSM)</strong> élimine ce problème à la racine.</p>
@@ -1773,49 +1796,128 @@
 </table>
 <hr>
 <h2 id="diagramme-des-transitions">Diagramme des transitions<a class="headerlink" href="#diagramme-des-transitions" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>            boot terminé
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>STARTING ────────────────▶ MENU
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>                             │
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                    [A] appuyé│
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>                             ▼
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>                          PLAYING
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>                             │
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>                   jeu terminé│
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>                             ▼
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>                          GAMEOVER
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>                          │      │
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>                   [A] appuyé    │[B] appuyé
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                          │      │
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                          ▼      ▼
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                       PLAYING  MENU
-</code></pre></div>
+<pre class="mermaid"><code>stateDiagram-v2
+    direction TB
+
+    [*] --&gt; STARTING
+
+    STARTING --&gt; MENU : boot terminé
+
+    MENU --&gt; PLAYING : [A] appuyé
+
+    PLAYING --&gt; GAMEOVER : jeu terminé
+
+    GAMEOVER --&gt; PLAYING : [A] appuyé — rejouer
+    GAMEOVER --&gt; MENU : [B] appuyé — retour menu</code></pre>
 <p>Chaque flèche est une <strong>transition</strong> déclenchée par un événement unique. Pas de raccourci, pas d'état intermédiaire.</p>
 <hr>
 <h2 id="algorithme-la-boucle-principale-complete">Algorithme — La boucle principale complète<a class="headerlink" href="#algorithme-la-boucle-principale-complete" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>boucle principale() :
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  lireEntrées()                         ← toujours en premier
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  selon état_console :
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    cas MENU :
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>      menu.mettreÀJour(entrées)
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>      menu.afficher()
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>      si entrées.A_appuyé :
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        lancerJeu(menu.jeuSélectionné)  ← transition vers PLAYING
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    cas PLAYING :
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>      jeuActif.mettreÀJour(entrées)
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>      jeuActif.afficher()
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>      si jeuActif.estTerminé() :
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        état ← GAMEOVER                 ← transition automatique
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    cas GAMEOVER :
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>      afficherGameOver()                ← dessiné une seule fois
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>      si entrées.A_appuyé :
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        lancerJeu(même jeu)             ← rejouer
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>      si entrées.B_appuyé :
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        état ← MENU                     ← retour menu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>boucle principale() :
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  lireEntrées()                          toujours en premier
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  selon état_console :
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    cas MENU :
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>      menu.mettreÀJour(entrées)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      menu.afficher()
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>      si entrées.A_appuyé :
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        lancerJeu(menu.jeuSélectionné)   transition vers PLAYING
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    cas PLAYING :
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>      jeuActif.mettreÀJour(entrées)
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>      jeuActif.afficher()
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>      si jeuActif.estTerminé() :
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        état ← GAMEOVER                  transition automatique
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    cas GAMEOVER :
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>      afficherGameOver()                 dessiné une seule fois
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>      si entrées.A_appuyé :
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        lancerJeu(même jeu)              rejouer
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>      si entrées.B_appuyé :
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        état ← MENU                      retour menu
 </code></pre></div>
+<pre class="mermaid"><code>flowchart TD
+    LOOP(["🔄 boucle principale()"])
+
+    READ["lireEntrées()
+    ─────────────────────
+    Toujours en premier"]
+
+    SWITCH{"état_console ?"}
+
+    subgraph MENU_BLOCK ["cas MENU"]
+        M1["menu.mettreÀJour(entrées)
+        menu.afficher()"]
+        M2{"entrées.A\nappuyé ?"}
+        M3["lancerJeu(
+        menu.jeuSélectionné)"]
+    end
+
+    subgraph PLAYING_BLOCK ["cas PLAYING"]
+        P1["jeuActif.mettreÀJour(entrées)
+        jeuActif.afficher()"]
+        P2{"jeuActif\n.estTerminé() ?"}
+        P3["état ← GAMEOVER"]
+    end
+
+    subgraph GAMEOVER_BLOCK ["cas GAMEOVER"]
+        G1["afficherGameOver()
+        (une seule fois)"]
+        G2{"entrées.A\nappuyé ?"}
+        G3["lancerJeu(même jeu)"]
+        G4{"entrées.B\nappuyé ?"}
+        G5["état ← MENU"]
+    end
+
+    NEXT(["🔁 Cycle suivant"])
+
+    LOOP --&gt; READ
+    READ --&gt; SWITCH
+
+    SWITCH -- MENU --&gt; M1
+    M1 --&gt; M2
+    M2 -- Oui --&gt; M3
+    M2 -- Non --&gt; NEXT
+    M3 --&gt; NEXT
+
+    SWITCH -- PLAYING --&gt; P1
+    P1 --&gt; P2
+    P2 -- Oui --&gt; P3
+    P2 -- Non --&gt; NEXT
+    P3 --&gt; NEXT
+
+    SWITCH -- GAMEOVER --&gt; G1
+    G1 --&gt; G2
+    G2 -- Oui --&gt; G3
+    G2 -- Non --&gt; G4
+    G3 --&gt; NEXT
+    G4 -- Oui --&gt; G5
+    G4 -- Non --&gt; NEXT
+    G5 --&gt; NEXT
+
+    NEXT --&gt; LOOP
+
+    style LOOP    fill:#1a2a3a,stroke:#00d4ff,stroke-width:2px,color:#d8d8f0
+    style NEXT    fill:#1a2a3a,stroke:#00d4ff,stroke-width:2px,color:#d8d8f0
+    style READ    fill:#1a1a2e,stroke:#00d4ff,stroke-width:1.5px,color:#d8d8f0
+    style SWITCH  fill:#2a1a3a,stroke:#b97cff,stroke-width:2px,color:#d8d8f0
+
+    style MENU_BLOCK     fill:#0d1f0d,stroke:#00ff88,stroke-width:2px,color:#00ff88
+    style M1  fill:#1a3a1a,stroke:#00ff88,stroke-width:1px,color:#d8d8f0
+    style M2  fill:#2a2a1a,stroke:#ffd600,stroke-width:1px,color:#d8d8f0
+    style M3  fill:#1a3a1a,stroke:#00ff88,stroke-width:1px,color:#d8d8f0
+
+    style PLAYING_BLOCK  fill:#0d0d1f,stroke:#00d4ff,stroke-width:2px,color:#00d4ff
+    style P1  fill:#1a1a3a,stroke:#00d4ff,stroke-width:1px,color:#d8d8f0
+    style P2  fill:#2a2a1a,stroke:#ffd600,stroke-width:1px,color:#d8d8f0
+    style P3  fill:#3a1a1a,stroke:#ff3c5f,stroke-width:1px,color:#d8d8f0
+
+    style GAMEOVER_BLOCK fill:#1f0d0d,stroke:#ff3c5f,stroke-width:2px,color:#ff3c5f
+    style G1  fill:#3a1a1a,stroke:#ff3c5f,stroke-width:1px,color:#d8d8f0
+    style G2  fill:#2a2a1a,stroke:#ffd600,stroke-width:1px,color:#d8d8f0
+    style G3  fill:#1a3a1a,stroke:#00ff88,stroke-width:1px,color:#d8d8f0
+    style G4  fill:#2a2a1a,stroke:#ffd600,stroke-width:1px,color:#d8d8f0
+    style G5  fill:#1a3a1a,stroke:#00ff88,stroke-width:1px,color:#d8d8f0</code></pre>
 <blockquote>
 <p><strong>Détail important :</strong> l'écran Game Over est dessiné <strong>une seule fois</strong>, protégé par un drapeau booléen. Sans ça, il serait redessiné 60 fois par seconde pour rien un gaspillage de ressources inutile.</p>
 </blockquote>
